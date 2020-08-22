@@ -1,2 +1,2 @@
 # Turban
-[![N|Solid](https://github.com/jacoweb/turban/turban.png)](https://github.com/jacoweb/turban/)
+[![N|Solid](https://github.com/jacoweb/turban/blob/master/turban.png)](https://github.com/jacoweb/turban/)
