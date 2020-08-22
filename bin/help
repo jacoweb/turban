@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+RED='\033[0;31m'
+GREEN='\033[1;32m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+cat << "EOF"
+
+                                                  _,,--,,_
+___________          ___.                       /`       .`\
+\__    ___/_ ________\_ |__ _____    ____      /  '  _.-'   \        
+  |    | |  |  \_  __ \ __ \\__  \  /    \     |  `'_{}_    |
+  |    | |  |  /|  | \/ \_\ \/ __ \|   |  \    |  /`    `\  |
+  |____| |____/ |__|  |___  (____  /___|  /     \/ ==  == \/
+                          \/     \/     \/      /| (.)(.) |\
+  The perfect and simple Docker environment     \|  __)_  |/
+                                                 |\/____\/|
+                                                 | ` ~~ ` |
+                                                 \        /
+                                                  `.____.`
+                                                  
+EOF
+
+echo "${RED}=======================================================================${NC}"
+echo ""
+echo "${GREEN}bin/turban build${NC}                  ${CYAN}=>${NC}                   Building the app "
+echo "${GREEN}bin/turban start${NC}                  ${CYAN}=>${NC}            Starting all containers "
+echo "${GREEN}bin/turban stop${NC}                   ${CYAN}=>${NC}            Stopping all containers "
+echo "${GREEN}bin/turban restart${NC}                ${CYAN}=>${NC}             Restart all containers "
+echo "${GREEN}bin/turban restart-php${NC}            ${CYAN}=>${NC}              Restart php Container "
+echo "${GREEN}bin/turban restart-mysql${NC}          ${CYAN}=>${NC}            Restart MySQL Container "
+echo "${GREEN}bin/turban restart-nginx${NC}          ${CYAN}=>${NC}            Restart NGINX Container "
+echo "${GREEN}bin/turban reset${NC}                  ${CYAN}=>${NC}                Reset public folder "
+echo "${GREEN}bin/turban login${NC}                  ${CYAN}=>${NC}                Login to Docker hub "
+echo ""
+echo "${GREEN}bin/turban wordpress${NC}              ${CYAN}=>${NC}           Install latest Wordpress "
+echo "${GREEN}bin/turban gravcms${NC}                ${CYAN}=>${NC}            Install latest Grav CMS "
+echo ""
+echo "${GREEN}bin/turban shell${NC}                  ${CYAN}=>${NC}             SSH into php Container "
+echo "${GREEN}bin/turban composer${NC}               ${CYAN}=>${NC}                       Run composer "
+echo ""
+echo "${RED}=======================================================================${NC}"

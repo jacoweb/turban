@@ -1,0 +1,70 @@
+version: '3'
+services:
+
+  #PHP Service
+  php:
+    env_file:
+      - .env
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    image: digitalocean.com/php
+    container_name: ${App}-php
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: php
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./public:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - turban
+
+  #Nginx Service
+  webserver:
+    env_file:
+      - .env
+    image: nginx:alpine
+    container_name: ${App}-webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./public:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - turban
+
+  #MySQL Service
+  db:
+    env_file:
+      - .env
+    image: mysql:5.7.22
+    container_name: ${App}-db
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USERNAME: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - turban
+
+#Docker Networks
+networks:
+  turban:
+    driver: bridge
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local

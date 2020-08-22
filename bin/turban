@@ -1,0 +1,64 @@
+#!/bin/bash
+
+opt=$1
+val=$2
+case $opt in
+  build)
+    make build
+  ;;
+  start)
+    make start
+  ;;
+  stop)
+    make stop
+  ;;
+  restart)
+    make restart
+  ;;
+  restart-php)
+    make restart-php
+  ;;
+  restart-mysql)
+    make restart-mysql
+  ;;
+  restart-nginx)
+    make restart-nginx
+  ;;
+  reset)
+    make reset
+  ;;
+  login)
+    make login
+  ;;
+  wordpress)
+    make wordpress
+  ;;
+  grav)
+    make gravcms
+  ;;
+  composer)
+    docker-compose exec --user www php composer $val
+  ;;
+  shell)
+    docker exec -t -i Turban-php /bin/bash
+  ;;
+
+  create)
+    if [ -n "$2" ]; then
+      mkdir $2
+      cp -R * $2/ && cp -R .env $2/.env
+      chmod -R +x $2/bin/*
+      echo "======================================================"
+      echo "New site created with Turban"
+      echo "$2"
+      echo "======================================================"
+    else
+      echo "======================================================"
+      echo "help: bin/turban create /Users/Turban/Sites/CoolSite"
+      echo "======================================================"
+    fi
+  ;;
+
+  *)
+  make
+esac
